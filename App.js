@@ -1,11 +1,14 @@
 import React, { Component }  from 'react';
-import  { View, Text }from 'react-native';
-
+import  { View, Text, ScrollView } from 'react-native';
+import Routes from './src/Navigation/Routes';
+import {StatusBar} from 'react-native';
+// import Home from './src/Screens/Profile/Profile';
 class App extends Component {
   render(){
-    return(
-      <View>
-        <Text>This is test screen</Text>
+    return (
+      <View style={{flex: 1}}>
+      <StatusBar />
+        <Routes />
       </View>
     )
   }
