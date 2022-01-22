@@ -1,18 +1,18 @@
 import React from 'react';
-import {View, Text, Button, Pressable} from 'react-native';
+import {View, Text, Button, SafeAreaView, TouchableOpacity,Alert, Pressable} from 'react-native';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <Text>This is Home screen</Text>
-        <Button title="Click me again" onPress={() => alert("Hello")} />
-        <Pressable onPress={() => Alert.alert('Simple Button pressed')}>
-            <Text>I'm pressable!</Text>
-            </Pressable>
-      </View>
-    );
-  }
+const Home = ({ navigation }) => {
+    const goToProfile = () => {
+        navigation.navigate("Profile", {title:"Subs me"});
+    }
+      
+  return (
+      <SafeAreaView style={{ flex:1, justifyContent: 'center', alignItem:'center' }}>
+        <View>
+            
+        </View>
+        </SafeAreaView>
+    )
 }
 
 export default Home;
