@@ -8,11 +8,14 @@ class Content extends Component {
         return(
             <View style={styles.content}>
                 <View style={styles.col2}>
-                    <CustomImage imageSource={require('../../assets/images/legal-help-clients.jpg')} />
+                    <CustomImage 
+                    imageSource={require('../../assets/images/legal-help-clients.jpg')} 
+                    header='Shirts' paragraph='New' 
+                    />
                 </View>
 
                 <View style={styles.col1}>
-                <CustomImage imageSource={require('../../assets/images/img4.jpg')} />
+                <CustomImage imageSource={require('../../assets/images/img4.jpg')} header="JEANS" paragraph="BLACK" />
                 </View>
 
                 <View style={styles.banner}> 
