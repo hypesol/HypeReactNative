@@ -1,0 +1,13 @@
+1. Create action file in index.
+2. Create Reducer file like counter.js.
+3. Call all reducers in index file in redux file.
+4. Create Store file and add RootReducer to the store.
+
+5. Go to "index.js" in root folder.
+6. Import store variable there.
+7. Import Provider from react redux file
+
+8. user Provider Tag for App Tag
+
+9. import selector and dispatch where you want to use Store.
+
