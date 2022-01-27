@@ -1,0 +1,95 @@
+React Native Crash Course
+
+
+IOS Build
+Use Diaway for run the build on iPhone directly
+
+Command for run project
+Npm start – run this command first in the project folder
+Npm run android - And then run this command in other cmd
+Or
+npx react-native run-android
+npx react-native start
+--------------------------------------------------------------
+Commands
+To reload the app press "r"
+To open developer menu press "d"
+Open Web “w”
+Open android “a”
+Toggle menu “m”
+All command “?”
+
+Run Emulator Command
+emulator –avd MyAVD
+
+DRun Emulator Command
+adb devices --- to check the attached devices.
+$ adb -s <device name> reverse tcp:8081 tcp:8081 – to run the 
+
+
+View
+You can use only one view in the function or class but you can use View tag with main View tag.
+Write Javascript in React Code
+Use curly braces {} to write the javascript code in the file
+Array
+const DATA = [
+  {id: '1', name: 'A' },
+  {id: '2', name: 'B' },
+]
+MAP Function
+Map function is used for data fetching or show data from array. But this function loads all data on first time which is not good practice.
+{
+DATA.map( item  => <Text key={item.id} style={{fontSize: 28}}> {item.name} </Text> )
+}
+FLATLIST
+Best practice to fetch data from array or api.
+<Flatlist 
+	data = {DATA}
+	renderItem = {(obj) => console.log(obj) }
+	renderItem = {( {item} ) => console.log(item) }
+renderItem = {( {item} ) => <Text> item.name </Text> }
+/>
+showVerticalScrollIndicator  This attribute will hide scroller.
+
+
+ScrollView
+<ScrollView showVerticalScrollIndicator={false}>
+</ScrollView>
+showVerticalScrollIndicator  This attribute will hide scroller.
+showHotizaontalScrollIndicator  
+Horizontal  This will make scroll view horizontal
+
+Shadow CSS
+ios
+shadowColor: ’#000’,
+shadowOffset: {width: 0, height:2 },
+shadowOpacity: 0.8
+shadowRadius: 3,
+android
+elevation :1
+
+VS Code
+Type “rnfc” and then press tab.
+
+NAVIGATION
+https://github.com/gulsher7/React-Native-Navigation6
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native-stack
+routes file: 3 Reactnative video time 13:47
+
+
+Icons Library
+npm install --save react-native-vector-icons
+react-native link react-native-vector-icons
+https://oblador.github.io/react-native-vector-icons/ -- Icons list
+Redux
+https://www.youtube.com/watch?v=1oU_YGhT7ck&ab_channel=ThapaTechnical
+
+Validation
+https://www.youtube.com/watch?v=Dbrf_OBN6p4&ab_channel=Muosigmaclasses
+
+SPLASH
+https://reactnativecode.com/create-app-intro-slider/
+https://medium.com/backticks-tildes/create-a-custom-app-intro-slider-in-react-native-4308fae83ad1
+
