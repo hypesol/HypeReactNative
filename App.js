@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import  { View, Text, ScrollView } from 'react-native';
-import Routes from './src/Navigation/Routes';
+// import Routes from './src/Navigation/Routes';
 // import TestScreen from './src/redux'
 import TestScreen from './src/Screens/Splash/Splash1';
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <View style={{flex: 1}}>
         <Text>This is Home Screen</Text>
-        <Routes />
+        {/* <Routes /> */}
       </View>
     )
   }
