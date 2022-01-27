@@ -1,6 +1,0 @@
-ICONS
--------
-https://github.com/oblador/react-native-vector-icons
-https://oblador.github.io/react-native-vector-icons/
-
-react-native link react-native-vector-icons
