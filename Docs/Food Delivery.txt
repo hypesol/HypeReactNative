@@ -1,0 +1,13 @@
+Create file on root "react-native.config.js"
+We will use this custom font in project
+
+module.exports = {
+    project:{
+        ios:{},
+        android:{},
+    },
+    assets: ["./src/assets/fonts/"]
+}
+
+Create all consts and then import all in index.js file in the consts folder.
+ 

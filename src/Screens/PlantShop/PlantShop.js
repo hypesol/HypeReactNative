@@ -21,7 +21,7 @@ import plants from '../../consts/plants';
 import COLORS from '../../consts/colors';
 const width = Dimensions.get("screen").width/2-30;
 
-const PlantShop = () => {
+const PlantShop = ( {navigation} ) => {
   // const myIcon1 = <Icon name="comments" size={30} color="#900" />; // Defaults to regular
   // const myIcon2 = <Icon name="comments" size={30} color="#900" solid />;
   // const myIcon3 = <Icon name="comments" size={30} color="#900" light />; // Only in FA5 Pro
@@ -62,9 +62,11 @@ const PlantShop = () => {
       </View>
     )
   }
-
+//navigation.navigate("PAGE COMPONENT NAME", "DATE SEND TO NEXT SCREEN")
   const Card =({ plant })=>{
-    return <View style={styles.card}>
+    return ( 
+    <TouchableOpacity onPress={() => navigation.navigate("PlantDetail", plant)}>
+    <View style={styles.card}>
         <View style={styles.favicon}>
           <View style={{
             height:30,
@@ -86,17 +88,19 @@ const PlantShop = () => {
           {plant.name}
         </Text>
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-        <Text>
+        <Text style={{fontSize:18, fontWeight:'bold'}}>
           {plant.price}
         </Text>
         <View style={{
           width:25, height:25, backgroundColor:COLORS.green, justifyContent:'center', alignItems:'center', borderRadius:5
         }}>
 
-          <Text style={{fontSize:22, color: COLORS.white, fontWeight:'bold' }}>+</Text>
+          <Text style={{fontSize:18, color: COLORS.white, fontWeight:'bold', alignItems:'center' }}>+</Text>
         </View>
       </View>
       </View>
+      </TouchableOpacity>
+    )
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -136,6 +140,7 @@ const styles = StyleSheet.create({
     // alignItem:'center',
     paddingHorizontal: 20,
     paddingVertical: 20,
+    backgroundColor: COLORS.white,
   },
   header: {
     marginTop: 0,

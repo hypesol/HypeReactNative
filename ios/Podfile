@@ -13,6 +13,7 @@ target 'HypeReactNative' do
   )
 
 
+
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'HypeReactNativeTests' do
