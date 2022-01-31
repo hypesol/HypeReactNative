@@ -16,7 +16,8 @@ const FoodHome = () => {
 
 
     function onSelectCategory(category) {
-        console.log(category);
+        setSelectedCategory(category)
+        console.log(selectedCategory);
     }
 
     function renderHeader(){
