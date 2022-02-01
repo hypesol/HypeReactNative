@@ -6,7 +6,7 @@ class App extends Component {
     return(
       <SafeAreaView>
       <View>
-        <Text>This is test screen 1</Text>
+        <Text>This is test screen 111</Text>
       </View>
       </SafeAreaView>
     )
