@@ -1,12 +1,14 @@
 import React, { Component }  from 'react';
-import  { View, Text }from 'react-native';
+import  { View, Text, SafeAreaView, StatusBar }from 'react-native';
 
 class App extends Component {
   render(){
     return(
+      <SafeAreaView>
       <View>
-        <Text>This is test screen</Text>
+        <Text>This is test screen 1</Text>
       </View>
+      </SafeAreaView>
     )
   }
 }
