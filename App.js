@@ -8,8 +8,8 @@ class App extends Component {
   render(){
     return (
       <View style={{flex: 1}}>
-        <RoutesLogin />
-        {/* <Routes /> */}
+        {/* <RoutesLogin /> */}
+        <Routes />
         {/* <TestScreen /> */}
         {/* <Text>HOME SCREEN</Text> */}
       </View>
