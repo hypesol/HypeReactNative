@@ -3,7 +3,7 @@ import  { View, Text, ScrollView } from 'react-native';
 import Routes from './src/Navigation/Routes';
 import RoutesLogin from './src/Navigations/Routes';
 //import TestScreen from './src/Screens/Navigation/tabs'
-import TestScreen from './src/Screens/Test/Hooks';
+import TestScreen from './src/Screens/Test/TypescriptCheck';
 class App extends Component {
   render(){
     return (
