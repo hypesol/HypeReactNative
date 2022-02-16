@@ -4,6 +4,10 @@ import { View, Text, Button, TextInput} from 'react-native';
 import { useSelector, useDispatch} from 'react-redux';
 import { incNumber, decNumber } from './actions/index'
 
+
+// Testing this example
+// https://enappd.com/blog/redux-in-react-native-app/92/
+
 // const {myState} = useSelector((state) => state.changeTheNumber);
 class ReduxHome extends Component {
     // const myState = { useSelector((state) => state.changeTheNumber) };
