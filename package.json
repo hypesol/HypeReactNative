@@ -45,6 +45,7 @@
     "react-native-vector-icons": "^9.0.0",
     "react-native-video": "https://github.com/MatrixFrog/react-native-video#11ca8a6799f932a5f24da85dfe68c696ad13a753",
     "react-redux": "^7.2.6",
+    "redux-logger": "^3.0.6",
     "redux-persist": "6.0.0",
     "redux-thunk": "^2.4.1",
     "run": "^1.4.0"
