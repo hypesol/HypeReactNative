@@ -16,14 +16,19 @@ const persistConfig = {
     blacklist :['',''] // here mentioned screen will not PERSIST 
   }
 
-  const persistReducer = persistReducer(persistConfig, rootReducer);
+  const reducers = persistReducer(persistConfig, rootReducer);
+  // const reducers = rootReducer;
 
-const configureStore = () =>{
-    // return createStore(rootReducer);
-    let store = createStore(persistReducer)
+  // const configureStore = () =>{
+  //     let store = createStore(reducers)
+  //     let persistor = persistStore(store);
+  //     return { store, persistor }
+  // }
+  // export default configureStore;
+
+  export default () =>{
+    let store = createStore(reducers)
     let persistor = persistStore(store);
-    return { store, persistor}
-}
-//const store = createStore(rootReducer); // Now all data will be store in "store" variable
-
-export default configureStore; // and can be access all over the application.
+    return { store, persistor }
+  }
+  // export default configureStore;
