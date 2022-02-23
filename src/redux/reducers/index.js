@@ -6,8 +6,8 @@ import userAuthentication from './auth';
 
 const rootReducer = combineReducers({
     changeTheNumber,
-    userAuthentication,
-    user:userAuthentication
+    // userAuthentication,
+    // user:userAuthentication
     //changeTheBackground,  you can combine multiple reducers here
 });
 

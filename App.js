@@ -11,21 +11,21 @@ import TestScreen from './src/Screens/Login/Login';
 // import TestScreen from './src/redux/index';
 
 const sstore = configureStore();
-// const persistor = configureStore();
+const persistor = configureStore();
 // import { persistor, store } from './src/redux/store/store';
 // const store = configureStore();
 const App = () => {
 
     return (
       <Provider store={sstore}>
-        {/* <PresistGate loading={<ActivityIndicator/>} persistor={persistor} > */}
+        <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
             <RoutesLogin />
               {/* <Routes /> */}
               {/* <TestScreen /> */}
               {/* <Text>HOME SCREEN</Text> */}
           </View>
-        {/* </PresistGate> */}
+        </PersistGate>
       </Provider>
     )
 }
