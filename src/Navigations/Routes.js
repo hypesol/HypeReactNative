@@ -8,18 +8,19 @@ import Login from '../Screens/Login/Login';
 import Signup from '../Screens/Signup/Signup';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-
+import { useSelector } from 'react-redux';
 
 // import Tabs from '../Screens/Navigation/tabs';
-
 
 const Stack = createNativeStackNavigator();
 
 function Routes(){
+    const appState = useSelector((state) => state.user.login);
+    console.log("Route", appState);
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                {false ? MainStack(Stack) : AuthStack(Stack)}
+                {appState ? MainStack(Stack) : AuthStack(Stack)}
                 {/* {AuthStack(Stack)}
                 {MainStack(Stack)} */}
             </Stack.Navigator>

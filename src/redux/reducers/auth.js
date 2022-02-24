@@ -1,6 +1,7 @@
 const initialState = {
     usr:'',
-    pwd:''
+    pwd:'',
+    login:false
 };
 const userAuthentication = (state = initialState, action ) => {
     // actions parameter have all data here
@@ -17,7 +18,8 @@ const userAuthentication = (state = initialState, action ) => {
             return {
                 ...state,
                 usr:action.data.email,
-                pwd:'123'
+                pwd:'123',
+                login:true
                 };
 
         case "DECREMENT":

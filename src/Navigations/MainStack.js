@@ -5,8 +5,9 @@ import Profile from '../Screens/Profile/Profile';
 export default function (Stack){
     return(
         <>
-        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Home" component={Home} />
+        
         </>
     )
 }
