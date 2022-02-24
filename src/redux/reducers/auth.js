@@ -8,6 +8,7 @@ const userAuthentication = (state = initialState, action ) => {
     let rtVar;
     switch(action.type){
         case "USER_LOGIN": 
+        // console.log(action.data.email)
             // const setData = {
             //     user:'ejaz',
             //     password:'123'
@@ -15,7 +16,7 @@ const userAuthentication = (state = initialState, action ) => {
             // rtVar = "Login"; 
             return {
                 ...state,
-                usr:'ejaz',
+                usr:action.data.email,
                 pwd:'123'
                 };
 

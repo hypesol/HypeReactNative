@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: { color:'#000'},
-  input: { height:40, width: '94%'  },
+  input: { height:40, width: '94%', borderColor:'#000', borderWidth:1  },
   inputIcon:{ width:20, resizeMode:'contain' }
 });
 

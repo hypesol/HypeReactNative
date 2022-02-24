@@ -10,14 +10,12 @@ import RoutesLogin from './src/Navigations/Routes';
 import TestScreen from './src/Screens/Login/Login';
 // import TestScreen from './src/redux/index';
 
-const sstore = configureStore();
-const persistor = configureStore();
-// import { persistor, store } from './src/redux/store/store';
-// const store = configureStore();
+import { store, persistor } from './src/redux/store/store';
+
 const App = () => {
 
     return (
-      <Provider store={sstore}>
+      <Provider store={store}>
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
             <RoutesLogin />

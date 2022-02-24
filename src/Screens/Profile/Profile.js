@@ -39,9 +39,9 @@ import {
 
   
 const ProfileView = (props) => {
-  const appState = useSelector((state) => state.usr);
+  const appState = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log("appState", appState)
+  console.log("appState New", appState)
 
   const logoutUser = () => {
     dispatch(logOutRequest(LogOutRequestEnum.tokenExpire));
@@ -62,7 +62,7 @@ const ProfileView = (props) => {
           alignContent: 'center',
         }}>
           <Text style={{color:'#000'}}>
-            {/* {appState.email} */}
+            {appState.usr}
           </Text>
           <TouchableOpacity
                   // style={[BUTTONS.btn, BUTTONS.btnFill]}

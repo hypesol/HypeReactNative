@@ -18,11 +18,12 @@ const persistConfig = {
     // blacklist :['',''] // Do not save specific reducer
   }
 
-  // const reducers = persistReducer(persistConfig, rootReducer);
   const persistedReducer = persistReducer(persistConfig, rootReducer)
+  
+  export const store = createStore(persistedReducer);
+  export const persistor = persistStore(store);
 
-  // const reducers = rootReducer;
-
+  
   // const configureStore = () =>{
   //     let store = createStore(reducers)
   //     let persistor = persistStore(store);
@@ -30,10 +31,13 @@ const persistConfig = {
   // }
   // export default configureStore;
 
-  export default () =>{
-    let store = createStore(persistedReducer)
-    // let store = createStore(persistedReducer, applyMiddleware(thunk))
-    let persistor = persistStore(store);
-    return { store, persistor }
-  }
+
+
+
+//   export default () =>{
+//     let store = createStore(persistedReducer)
+//     // let store = createStore(persistedReducer, applyMiddleware(thunk))
+//     let persistor = persistStore(store);
+//     return { store, persistor }
+//   }
   // export default configureStore;
