@@ -3,13 +3,13 @@ import '@firebase/auth';
 import '@firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyCfGknsCJLra-sZ-vTgNsnBsX_TRwQ18_w', //done
-    authDomain: 'fir-xtest.firebaseapp.com', // done but not confirm
-    databaseURL: 'https://your-database-name.firebaseio.com',
-    projectId: 'your-project-id-1234',
-    storageBucket: 'your-project-id-1234.appspot.com',
-    messagingSenderId: '565072451105', //done
-    appId: '1:565072451105:android:2d041a5f737b894fa2f560', //done
+    apiKey: "AIzaSyAj_C6AadI-ajUbVRtAGf8Q7jlI7HfZ058",
+    authDomain: "fir-xtest.firebaseapp.com",
+    databaseURL: "https://fir-xtest-default-rtdb.firebaseio.com",
+    projectId: "fir-xtest",
+    storageBucket: "fir-xtest.appspot.com",
+    messagingSenderId: "565072451105",
+    appId: "1:565072451105:web:af35fc5c401fd9fca2f560"
   };
   
   if (!firebase.apps.length) {
