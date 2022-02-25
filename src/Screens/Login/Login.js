@@ -32,8 +32,8 @@ const Login = ({ navigation }) => {
 
     const { control, handleSubmit, formState:{errors} } = useForm();
 
-    const stateData = useSelector((state) => state.user.usr );
-    // console.log("First",stateData)
+    const stateData = useSelector((state) => state.authReducer.usr );
+    console.log("First",stateData)
 
     const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // const updateState =(data) => {
@@ -64,6 +64,9 @@ const Login = ({ navigation }) => {
                     justifyContent: 'center',
                     alignContent: 'center',
                 }}>
+
+<Text style={{color:'red', fontWeight:'bold'}}>{ stateData }</Text>
+
                 <CustomInput
                     name="email"
                     control={control}
@@ -94,7 +97,8 @@ const Login = ({ navigation }) => {
                         onPress={handleSubmit(onLogin)}
                         // onPress={handleSubmit((data) => onLogin(data))}
                     >
-                        <Text>{stateData.email}
+                        <Text>
+                            {/* {stateData.email} */}
                             Sign In
                         </Text>
                     </TouchableOpacity>
@@ -104,7 +108,8 @@ const Login = ({ navigation }) => {
                         //onPress={() => navigation.navigate("Profile")}
                         onPress={() => navigation.navigate('Profile')}
                     >
-                        <Text style={{textAlign:'center'}}>{stateData.email}
+                        <Text style={{textAlign:'center'}}>
+                            {/* {stateData.email} */}
                             Profile
                         </Text>
                     </TouchableOpacity>

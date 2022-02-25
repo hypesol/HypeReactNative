@@ -28,6 +28,7 @@ import {
   widthPercentageToDP as wp,
 } from '../../../utils/GetResponsiveHeight';
 
+import { userLogout } from '../../redux/actions/auth';
 // import CustomInput from '../../../components/CustomInput/CustomInput';
 // import CustomButton from '../../../components/CustomButton/CustomButton';
 // import ICONS from '../../../consts/icons';
@@ -39,12 +40,12 @@ import {
 
   
 const ProfileView = (props) => {
-  const appState = useSelector((state) => state.user);
+  const stateData = useSelector((state) => state.authReducer.usr );
   const dispatch = useDispatch();
-  console.log("appState New", appState)
+  console.log("appState New", stateData)
 
   const logoutUser = () => {
-    dispatch(logOutRequest(LogOutRequestEnum.tokenExpire));
+    dispatch(userLogout());
   }
   return (
 
@@ -62,7 +63,7 @@ const ProfileView = (props) => {
           alignContent: 'center',
         }}>
           <Text style={{color:'#000'}}>
-            {appState.usr}
+            {stateData}
           </Text>
           <TouchableOpacity
                   // style={[BUTTONS.btn, BUTTONS.btnFill]}
