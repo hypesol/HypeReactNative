@@ -1,0 +1,5 @@
+This library is directly operated by Google and highly recommened to use this.
+yarn add firebase of npm install firebase
+
+Following this tutorial
+https://www.freecodecamp.org/news/react-native-firebase-tutorial/

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "565072451105",
+    "firebase_url": "https://fir-xtest-default-rtdb.firebaseio.com",
+    "project_id": "fir-xtest",
+    "storage_bucket": "fir-xtest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565072451105:android:2d041a5f737b894fa2f560",
+        "android_client_info": {
+          "package_name": "com.reactnativefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565072451105-jf0p1ucuitks577q7gkn2fve17euvvnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfGknsCJLra-sZ-vTgNsnBsX_TRwQ18_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565072451105-jf0p1ucuitks577q7gkn2fve17euvvnm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
