@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
                     alignContent: 'center',
                 }}>
 
-<Text style={{color:'red', fontWeight:'bold'}}>{ stateData }</Text>
+<Text style={{color:'red', fontWeight:'bold'}}>sss { stateData }</Text>
 
                 <CustomInput
                     name="email"

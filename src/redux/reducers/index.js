@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
-import changeTheNumber from './counter';
+// import changeTheNumber from './counter';
 import userAuthentication from './auth';
 // Call all reducers here.
 
 const rootReducer = combineReducers({
-    changeTheNumber,
-    user:userAuthentication
+    // chNum:changeTheNumber,
+    authReducer:userAuthentication
 });
 
 export default rootReducer;
