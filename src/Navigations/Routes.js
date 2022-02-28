@@ -22,7 +22,10 @@ function Routes(){
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                {stateData ? MainStack(Stack) : AuthStack(Stack)}
+            {/* {stateData ? MainStack(Stack) : AuthStack(Stack)} */}
+
+                {stateData ? <Stack.Screen name="MainStack" component={MainStack} /> : AuthStack(Stack)}
+            
                 {/* {AuthStack(Stack)} */}
                 {/* {MainStack(Stack)} */}
             </Stack.Navigator>
