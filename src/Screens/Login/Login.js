@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import {View,Text, TouchableOpacity, StyleSheet, ScrollView, TextInput} from 'react-native';
 
 // import { useNavigation } from '@react-navigation/native'
 
@@ -15,6 +15,10 @@ import { userLogin } from '../../redux/actions/auth';
 import TextInputWithLabel from '../../components/TextInputWithLabel';
 import ButtonWithLoader from '../../components/ButtonWithLoader';
 import CustomInput from '../../components/CustomInput';
+
+import SelectDropdown from 'react-native-select-dropdown'
+import {Controller} from 'react-hook-form';
+
 
 // const Login = ({ navigation }) => {
 const Login = ({ navigation }) => {
@@ -33,8 +37,12 @@ const Login = ({ navigation }) => {
     const { control, handleSubmit, formState:{errors} } = useForm();
 
     const stateData = useSelector((state) => state.authReducer.usr );
-    console.log("First",stateData)
 
+    const [sdropdown, setsDropdown] = useState(null);
+    // console.log("First",stateData)
+
+    const countries = ["Egypt", "Canada", "Australia", "Ireland"]
+    
     const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // const updateState =(data) => {
     //     ({ ...state, ...data })
@@ -47,7 +55,7 @@ const Login = ({ navigation }) => {
         //     alert("Please fill your email and password")
         //     return
         // }
-        // console.log(data);
+        console.log("MAIN:-  "+data);
         const newData = {
             email: data.email,
             pass: data.password
@@ -92,10 +100,67 @@ const Login = ({ navigation }) => {
                         },
                     }}
                 />
-                <View style={ {marginTop: 100 }}>
+
+
+
+{/* <Controller
+        control={control}
+        rules={{
+         maxLength: 100,
+         required: 'Field is required',
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+            <SelectDropdown
+                data={countries}
+                defaultValue={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                    value => selectedItem
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    // text represented after item is selected
+                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    return selectedItem
+                }}
+                rowTextForSelection={(item, index) => {
+                    // text represented for each item in dropdown
+                    // if data array is an array of objects then return item.property to represent item in dropdown
+                    return item
+                }}
+            />
+        )}
+        name="lastName"
+      /> */}
+
+
+
+<SelectDropdown
+                data={countries}
+                onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index);
+                    setsDropdown(selectedItem)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    // text represented after item is selected
+                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    return selectedItem
+                }}
+                rowTextForSelection={(item, index) => {
+                    // text represented for each item in dropdown
+                    // if data array is an array of objects then return item.property to represent item in dropdown
+                    return item
+                }}
+            />
+                <View style={ {marginTop: 10 }}>
                     <TouchableOpacity 
-                        onPress={handleSubmit(onLogin)}
-                        // onPress={handleSubmit((data) => onLogin(data))}
+                        // onPress={handleSubmit(onLogin)}
+                        // onPress={onL
+                        
+                        onPress={handleSubmit((data) => onLogin(data))}
+                        // onPress={ sdropdown === null ? null : handleSubmit((data) => onLogin(data))}
+                        
                     >
                         <Text>
                             {/* {stateData.email} */}

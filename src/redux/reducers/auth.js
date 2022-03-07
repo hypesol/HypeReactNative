@@ -11,7 +11,7 @@ const authReducer = (state = initialState, action) => {
             return {
               ...state,
               usr: action.data.email,
-              pwd: '123',
+              pwd: action.data.pass,
               login: true,
               loggedIn: true
             };

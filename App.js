@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, useState, useEffect }  from 'react';
 import  { View, ActivityIndicator } from 'react-native';
 import { Provider, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -9,6 +9,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 //import TestScreen from './src/Screens/Navigation/tabs'
 //import TestScreen from './src/Screens/Login/Login';
 // import TestScreen from './src/redux/index';
+import AnimatedSplash from "react-native-animated-splash-screen";
+
 import RoutesLogin from './src/Navigations/Routes';
 import { store, persistor } from './src/redux/store/store';
 
@@ -17,8 +19,24 @@ import { store, persistor } from './src/redux/store/store';
 import Counter from './src/Screens/Test/Counter';
 
 const App = () => {
-
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      // SplashScreen.hide();
+      setTimeout(() => {
+        setLoading(true);
+      }, 500);
+    }, 3000);
+  }, []);
     return (
+      <AnimatedSplash
+        translucent={true}
+        isLoaded={loading}
+        logoImage={require("./src/assets/images/sun.png")}
+        backgroundColor={"#262626"}
+        logoHeight={150}
+        logoWidth={150}
+      >
       <Provider store={store}>
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
@@ -30,6 +48,7 @@ const App = () => {
           </View>
         </PersistGate>
       </Provider>
+      </AnimatedSplash>
     )
 }
 

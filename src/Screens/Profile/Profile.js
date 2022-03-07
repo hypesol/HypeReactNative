@@ -40,7 +40,7 @@ import { userLogout } from '../../redux/actions/auth';
 
   
 const ProfileView = (props) => {
-  const stateData = useSelector((state) => state.authReducer.usr );
+  const stateData = useSelector((state) => state.authReducer.pwd );
   const dispatch = useDispatch();
   console.log("appState New", stateData)
 
