@@ -83,7 +83,7 @@ const Login = ({ navigation }) => {
                     secureTextEntry={false}
                     rules={{
                         required: 'Email is required',
-                        // pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
+                        pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
                     }}
                 />
                 <CustomInput

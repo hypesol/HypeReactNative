@@ -1,4 +1,4 @@
-// REDUX WITH PERSIST AND SAGA
+// REDUX WITH PERSIST ONLY -- SAVE VALUES IN STORE
 import {createStore, applyMiddleware} from 'redux'; // Create store here
 
 // These 2 lines for PERSIST
