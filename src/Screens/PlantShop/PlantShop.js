@@ -54,7 +54,7 @@ const PlantShop = ( {navigation} ) => {
                 categoryIndex == index && styles.categoryTextSelected
               ]}
               >
-              {item} 
+              {item}
             </Text>
             </TouchableOpacity>
            ))}
@@ -65,7 +65,7 @@ const PlantShop = ( {navigation} ) => {
 //navigation.navigate("PAGE COMPONENT NAME", "DATE SEND TO NEXT SCREEN")
   const Card =({ plant })=>{
     return ( 
-    <TouchableOpacity onPress={() => navigation.navigate("PlantDetail", plant)}>
+    <TouchableOpacity onPress={() => navigation.navigate("PlantDetails", plant)}>
     <View style={styles.card}>
         <View style={styles.favicon}>
           <View style={{
@@ -106,8 +106,8 @@ const PlantShop = ( {navigation} ) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View>
-          <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome to 2</Text>
-          <Text style={{fontSize: 32, fontWeight: 'bold', color:COLORS.green, }}>Market Place</Text>
+          {/* <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome to 2</Text> */}
+          {/* <Text style={{fontSize: 32, fontWeight: 'bold', color:COLORS.green, }}>Market Place</Text> */}
         </View>
         <Icon name="shopping-cart" size={32} color="green" />
       </View>
