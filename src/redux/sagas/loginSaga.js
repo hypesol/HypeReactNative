@@ -1,11 +1,11 @@
 import { call } from "redux-saga/effects";
 
 export default function* loginInfo(action){
-    // console.log(action);
+    console.log(action.email);
     // const apiURL = "https://dev-accounts.seebiz.com/getAdOnStatus?adOnKey=seebiz";
     const apiURL = "https://dev-accounts.seebiz.com/login";
     getLoginInfo = async data =>{
-        console.log(data.email);
+        console.log(data["email"]);
         const response = await fetch(apiURL,
              {
                method: 'POST',

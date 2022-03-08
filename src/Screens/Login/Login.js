@@ -55,10 +55,10 @@ const Login = ({ navigation }) => {
         //     alert("Please fill your email and password")
         //     return
         // }
-        console.log("MAIN:-  "+data);
+        // console.log("MAIN:-  "+data.email);
         const newData = {
             email: data.email,
-            pass: data.password
+            password: data.password
         }
 
         dispatch(userLogin(newData));
