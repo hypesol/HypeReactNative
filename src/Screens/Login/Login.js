@@ -83,7 +83,7 @@ const Login = ({ navigation }) => {
                     secureTextEntry={false}
                     rules={{
                         required: 'Email is required',
-                        pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
+                        // pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
                     }}
                 />
                 <CustomInput
@@ -136,7 +136,7 @@ const Login = ({ navigation }) => {
 
 
 
-<SelectDropdown
+{/* <SelectDropdown
                 data={countries}
                 onSelect={(selectedItem, index) => {
                     console.log(selectedItem, index);
@@ -152,7 +152,7 @@ const Login = ({ navigation }) => {
                     // if data array is an array of objects then return item.property to represent item in dropdown
                     return item
                 }}
-            />
+            /> */}
                 <View style={ {marginTop: 10 }}>
                     <TouchableOpacity 
                         // onPress={handleSubmit(onLogin)}

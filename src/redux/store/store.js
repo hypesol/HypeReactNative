@@ -10,7 +10,7 @@ import rootReducer from '../reducers/index'; // Call rootReducer which have all 
 
 import createSagaMiddleware from '@redux-saga/core';
 
-// import sagass from './sagas';
+import sagas from '../sagas'
 
 // PERSIST Configtations
   const persistConfig = {
@@ -30,5 +30,7 @@ import createSagaMiddleware from '@redux-saga/core';
    const store = createStore(persistedReducer, applyMiddleware(sagaMiddleWare));
    let persistor = persistStore(store);
    
+  sagaMiddleWare.run(sagas);
+
    export { store, persistor}
   

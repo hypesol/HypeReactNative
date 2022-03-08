@@ -32,7 +32,7 @@ const App = () => {
       <AnimatedSplash
         translucent={true}
         isLoaded={loading}
-        logoImage={require("./src/assets/images/sun.png")}
+        logoImage={require("./src/assets/icons/like.png")}
         backgroundColor={"#262626"}
         logoHeight={150}
         logoWidth={150}

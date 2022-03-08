@@ -4,7 +4,7 @@
 
 export const userLogin = (data) => {
     return {
-        type: 'USER_LOGIN',
+        type: 'USER_LOGIN_SAGA',
         data
     }
 }
@@ -12,5 +12,12 @@ export const userLogin = (data) => {
 export const userLogout = () => {
     return {
         type: 'USER_LOGOUT'
+    }
+}
+
+export const haveInfo = ({numberInfo}) => {
+    return{
+        type: 'NUMBER_INFO_ASYNC',
+        numberInfo
     }
 }
