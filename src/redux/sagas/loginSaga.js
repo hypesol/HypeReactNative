@@ -3,7 +3,6 @@ import { call } from "redux-saga/effects";
 export default function* loginInfo(action){
     // export const loginInfo= (action) => {
     console.log(action);
-    // const apiURL = "https://dev-accounts.seebiz.com/getAdOnStatus?adOnKey=seebiz";
     const apiURL = "https://dev-accounts.seebiz.com/login";
     getLoginInfo = async data =>{
         // console.log("Login Info: ",data.data);
@@ -27,23 +26,21 @@ export default function* loginInfo(action){
                 // return response.json();
                 return response;
             })
-            .then(result => {
-                return result;
-            })
+            // .then(result => {
+            //     return result;
+            // })
             .catch(error => {
                 // console.log('error', error);
                 return error;
             });
-            
             return userInfo;
     }
 
     try{
-        const userData = yield call(getLoginInfo, action);
+        let userData = yield call(getLoginInfo, action);
         console.log("TEST:- ",userData);
     }
     catch(error){
         console.log("Error",error);
     }
-
 }
