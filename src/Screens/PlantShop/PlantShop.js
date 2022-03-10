@@ -14,6 +14,9 @@ import {
   Dimensions,
   Image
 } from 'react-native';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 // import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import plants from '../../consts/plants';
@@ -25,6 +28,7 @@ const PlantShop = ( {navigation} ) => {
   // const myIcon1 = <Icon name="comments" size={30} color="#900" />; // Defaults to regular
   // const myIcon2 = <Icon name="comments" size={30} color="#900" solid />;
   // const myIcon3 = <Icon name="comments" size={30} color="#900" light />; // Only in FA5 Pro
+  const stateData = useSelector((state) => state );
 
   const categories = ['POUPLAR', 'ORGANIC', 'INDOORS', 'SYNTHETIC'];
  const [ categoryIndex, setCategoryIndex ] = React.useState(0);
@@ -41,7 +45,6 @@ const PlantShop = ( {navigation} ) => {
   const CategoryList = () => {
     return(
       <View style={styles.categoryContainer}>
-
         {categories.map((item, index) => (
           <TouchableOpacity 
           activeOpacity={0.8}
@@ -56,6 +59,7 @@ const PlantShop = ( {navigation} ) => {
               >
               {item}
             </Text>
+
             </TouchableOpacity>
            ))}
 
@@ -105,6 +109,7 @@ const PlantShop = ( {navigation} ) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
+      <Text>{console.log(stateData)}ddd</Text>
         <View>
           {/* <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome to 2</Text> */}
           {/* <Text style={{fontSize: 32, fontWeight: 'bold', color:COLORS.green, }}>Market Place</Text> */}

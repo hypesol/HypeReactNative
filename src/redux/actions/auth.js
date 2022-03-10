@@ -9,6 +9,13 @@ export const userLogin = (data) => {
     }
 }
 
+export const userLoginResponse = (data) =>{
+    return{
+        type: 'USER_LOGIN_RESPONSE',
+        data
+    }
+}
+
 export const userLogout = () => {
     return {
         type: 'USER_LOGOUT'

@@ -40,9 +40,10 @@ import { userLogout } from '../../redux/actions/auth';
 
   
 const ProfileView = (props) => {
-  const stateData = useSelector((state) => state.authReducer.pwd );
+  const stateData = useSelector((state) => state );
+  const userData = useSelector((state) => state.authReducer.userInfo );
   const dispatch = useDispatch();
-  console.log("appState New", stateData)
+  console.log("appState New", userData.user)
 
   const logoutUser = () => {
     dispatch(userLogout());
@@ -62,9 +63,14 @@ const ProfileView = (props) => {
           justifyContent: 'center',
           alignContent: 'center',
         }}>
-          <Text style={{color:'#000'}}>
-            {stateData}
-          </Text>
+          <Text style={{color:'#000'}}>{userData.user.username}</Text>
+          <Text style={{color:'#000'}}>{userData.token}</Text>
+            {/* {
+              userData['user'].map(item =>
+                 <Text>              {item}            </Text>
+                )
+            } */}
+          
           <TouchableOpacity
                   // style={[BUTTONS.btn, BUTTONS.btnFill]}
                   

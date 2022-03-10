@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false }}>
       <Stack.Screen name="Profile" component={PlantShop} />
       <Stack.Screen name="PlantDetails" component={PlantDetails} />
     </Stack.Navigator>
@@ -23,9 +23,9 @@ export default function (Stack){
         {/* <Stack.Screen name="Profile" component={PlantShop} />
         <Stack.Screen name="PlantDetails" component={PlantDetails} /> */}
 
-        <Tab.Navigator>
-            <Tab.Screen name="HomeStack" component={HomeStack} />
+        <Tab.Navigator screenOptions={{headerShown: false }}>
             <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="HomeStack" component={HomeStack} />
         </Tab.Navigator>
         </>
     )

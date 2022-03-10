@@ -2,7 +2,8 @@ const initialState = {
 loggedIn: false,
 usr: '',
 pwd: '',
-login: false
+login: false,
+userInfo:[]
 };
 
 const authReducer = (state = initialState, action) => {
@@ -10,11 +11,22 @@ const authReducer = (state = initialState, action) => {
         case "USER_LOGIN":{
             return {
               ...state,
-              usr: action.data.email,
+              usr: action.username,
               pwd: action.data.pass,
               login: true,
               loggedIn: true
             };
+        }
+
+        case "USER_LOGIN_RESPONSE":{
+          console.log(action.data)
+          return {
+            ...state,
+            usr: action.data.user.username,
+            userInfo: action.data,
+            login: true,
+            loggedIn: true
+          };
         }
         case "USER_LOGOUT":{
           return {
