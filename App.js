@@ -14,7 +14,7 @@ import AnimatedSplash from "react-native-animated-splash-screen";
 import RoutesLogin from './src/Navigations/Routes';
 import { store, persistor } from './src/redux/store/store';
 
-// import { store, persistor } from './redux/store/store';
+/// import { store, persistor } from './redux/store/store';
 
 import Counter from './src/Screens/Test/Counter';
 
