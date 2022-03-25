@@ -13,12 +13,12 @@ export default function* loginInfo(action){
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: dataObj,
-                redirect: 'follow'
-              };
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: dataObj,
+            redirect: 'follow'
+            };
 
          const userInfo = await fetch("https://dev-accounts.seebiz.com/login/", requestOptions)
             .then(response => response.text())
