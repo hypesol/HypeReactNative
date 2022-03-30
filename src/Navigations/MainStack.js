@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlantShop from '../Screens/PlantShop/PlantShop';
 import PlantDetails from '../Screens/PlantShop/PlantDetail'
+import JSON from '../Screens/WP/JSON';
+import RESTAPI from '../Screens/WP/RESTAPI';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -24,8 +26,9 @@ export default function (Stack){
         <Stack.Screen name="PlantDetails" component={PlantDetails} /> */}
 
         <Tab.Navigator screenOptions={{headerShown: false }}>
-            <Tab.Screen name="Profile" component={Profile} />
-            <Tab.Screen name="HomeStack" component={HomeStack} />
+            <Tab.Screen name="RESTAPI" component={RESTAPI} />
+            <Tab.Screen name="JSON" component={JSON} />
+            {/* <Tab.Screen name="HomeStack" component={HomeStack} /> */}
         </Tab.Navigator>
         </>
     )

@@ -21,14 +21,14 @@ function Routes(){
     console.log("Route", stateData);
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: true }}>
+            {/* <Stack.Navigator screenOptions={{headerShown: true }}> */}
             {/* {stateData ? MainStack(Stack) : AuthStack(Stack)} */}
 
                 {/* {stateData ? <Stack.Screen name="MainStack" component={MainStack} /> : AuthStack(Stack)} */}
             
                 {/* {AuthStack(Stack)} */}
                 {MainStack(Stack)}
-            </Stack.Navigator>
+            {/* </Stack.Navigator> */}
         </NavigationContainer>
     )
 }

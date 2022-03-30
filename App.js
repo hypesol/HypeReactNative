@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 //import TestScreen from './src/Screens/Navigation/tabs'
 //import TestScreen from './src/Screens/Login/Login';
 // import TestScreen from './src/redux/index';
+import JSON from './src/Screens/WP/JSON';
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 import RoutesLogin from './src/Navigations/Routes';
@@ -43,7 +44,7 @@ const App = () => {
             {/* <Counter /> */}
             <RoutesLogin />
               {/* <Routes /> */}
-              {/* <TestScreen /> */}
+              {/* <JSON /> */}
               {/* <Text>HOME SCREEN</Text> */}
           </View>
         </PersistGate>
