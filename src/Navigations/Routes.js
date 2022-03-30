@@ -24,10 +24,10 @@ function Routes(){
             <Stack.Navigator screenOptions={{headerShown: true }}>
             {/* {stateData ? MainStack(Stack) : AuthStack(Stack)} */}
 
-                {stateData ? <Stack.Screen name="MainStack" component={MainStack} /> : AuthStack(Stack)}
+                {/* {stateData ? <Stack.Screen name="MainStack" component={MainStack} /> : AuthStack(Stack)} */}
             
                 {/* {AuthStack(Stack)} */}
-                {/* {MainStack(Stack)} */}
+                {MainStack(Stack)}
             </Stack.Navigator>
         </NavigationContainer>
     )
