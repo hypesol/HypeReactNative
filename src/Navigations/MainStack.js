@@ -26,7 +26,7 @@ export default function (Stack) {
     <>
       {/* <Stack.Screen name="Profile" component={PlantShop} />
         <Stack.Screen name="PlantDetails" component={PlantDetails} /> */}
-      {/* <Stack.Screen name="GqlDetailScreen" component={GqlDetailScreen} /> */}
+      <Stack.Screen name="GqlDetailScreen" component={GqlDetailScreen} />
       <Tab.Navigator screenOptions={{headerShown: false}}>
         <Tab.Screen name="GRAPHQL" component={GRAPHQL} />
         <Tab.Screen name="RESTAPI" component={RESTAPI} />
