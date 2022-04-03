@@ -56,7 +56,7 @@ function ExchangeRates() {
       </View>
     );
 
-  console.log('DATA', data.posts.nodes);
+  // console.log('DATA', data.posts.nodes);
   return data.posts.nodes.map(({title, id}) => (
     <View key={id}>
       <Text>{title} - {id}</Text>
