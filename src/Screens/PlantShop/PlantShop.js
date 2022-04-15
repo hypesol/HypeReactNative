@@ -109,7 +109,7 @@ const PlantShop = ( {navigation} ) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-      <Text>{console.log(stateData)}ddd</Text>
+      <Text>{console.log("Plant Shop",stateData)}ddd</Text>
         <View>
           {/* <Text style={{fontSize: 22, fontWeight: 'bold'}}>Welcome to 2</Text> */}
           {/* <Text style={{fontSize: 32, fontWeight: 'bold', color:COLORS.green, }}>Market Place</Text> */}
