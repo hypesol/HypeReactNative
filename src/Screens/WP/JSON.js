@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Config from 'react-native-config';
+// import Config from 'react-native-config';
 import { useIsFocused } from '@react-navigation/native';
 
 import {View, Text, Button, SafeAreaView, TouchableOpacity,Alert, Pressable} from 'react-native';
@@ -22,7 +22,7 @@ const JSON = () => {
       };
 
       useEffect(() => {
-        fetchApiData();
+        // fetchApiData();
       }, [isFocused]);
   return (
       <SafeAreaView style={{ flex:1, justifyContent: 'center', alignItem:'center' }}>

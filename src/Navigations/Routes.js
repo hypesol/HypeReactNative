@@ -2,13 +2,14 @@ import React from 'react';
 import { View ,Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useSelector } from 'react-redux';
 import {Home, Profile, Splash1, PlantShop, PlantDetail } from '../Screens';
 import {FoodHome, Restaurant, OrderDelivery} from '../Screens/FoodApp';
 import Login from '../Screens/Login/Login';
 import Signup from '../Screens/Signup/Signup';
+import ImageUpload from '../Screens/Test/ImageUpload';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-import { useSelector } from 'react-redux';
 
 // import Tabs from '../Screens/Navigation/tabs';
 
