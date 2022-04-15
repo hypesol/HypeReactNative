@@ -1,8 +1,14 @@
+// https://github.com/tilltue/TLPhotoPicker
+// https://github.com/baronha/react-native-multiple-image-picker
+
+
 import * as React from 'react';
 import {StyleSheet, SafeAreaView, View, Image, ScrollView, Pressable, Text} from 'react-native';
 // import {DemoTitle, DemoButton, DemoResponse} from './components';
 
 import * as ImagePicker from 'react-native-image-picker';
+
+
 
 /* toggle includeExtra */
 const includeExtra = true;

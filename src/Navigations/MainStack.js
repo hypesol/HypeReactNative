@@ -8,9 +8,9 @@ import PlantDetails from '../Screens/PlantShop/PlantDetail';
 import JSON from '../Screens/WP/JSON';
 import RESTAPI from '../Screens/WP/RESTAPI';
 import GRAPHQL from '../Screens/WP/GRAPHQL';
-import ImageUpload from '../Screens/Test/ImageUpload';
-import ImageSelect from '../Screens/Test/ImageSelect';
-import ImagePicker from '../Screens/Test/ImagePicker';
+import ImageUpload from '../Screens/Upload/ImageUpload';
+import ImageSelect from '../Screens/Upload/ImageSelect';
+import ImagePicker from '../Screens/Upload/ImagePicker';
 
 import {GqlHomeScreen, GqlDetailScreen} from '../Screens/WP/GRAPHQL';
 const Tab = createBottomTabNavigator();

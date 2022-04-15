@@ -7,7 +7,7 @@ import {Home, Profile, Splash1, PlantShop, PlantDetail } from '../Screens';
 import {FoodHome, Restaurant, OrderDelivery} from '../Screens/FoodApp';
 import Login from '../Screens/Login/Login';
 import Signup from '../Screens/Signup/Signup';
-import ImageUpload from '../Screens/Test/ImageUpload';
+import ImageUpload from '../Screens/Upload/ImageUpload';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 
