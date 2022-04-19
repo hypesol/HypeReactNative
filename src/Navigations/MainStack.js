@@ -15,6 +15,7 @@ import ShareExample from '../Screens/Sharing/ShareSimple';
 import ShareAdvance from '../Screens/Sharing/ShareLink';
 import ShareMedia from '../Screens/Sharing/ShareMedia';
 import ShareAll from '../Screens/Sharing/ShareAll';
+import ProductDesign from '../Screens/ProductDesign'
 
 import {GqlHomeScreen, GqlDetailScreen} from '../Screens/WP/GRAPHQL';
 const Tab = createBottomTabNavigator();
@@ -37,6 +38,8 @@ export default function (Stack) {
       <Stack.Screen name="ImageUpload" component={ImageUpload} />
       <Tab.Navigator screenOptions={{headerShown: false}}>
 
+
+        <Tab.Screen name="ProductDesign" component={ProductDesign} />
         <Tab.Screen name="ShareAll" component={ShareAll} />
         <Tab.Screen name="ShareMedia" component={ShareMedia} />
         <Tab.Screen name="ShareAdvance" component={ShareAdvance} />
