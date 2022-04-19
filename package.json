@@ -48,6 +48,7 @@
     "react-native-animated-splash-screen": "^2.0.5",
     "react-native-config": "^1.4.5",
     "react-native-easy-gestures": "^2.2.4",
+    "react-native-elements": "^3.4.2",
     "react-native-flash-message": "^0.2.1",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-image-picker": "^4.7.3",
