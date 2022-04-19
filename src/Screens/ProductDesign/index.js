@@ -13,7 +13,9 @@ import CoverEditor from './CoverEditor';
 
 const ProductDesigner = () => {
   return (
-    <View style={[styles.container, {display:'none'}]}>
+    <>
+    <CoverEditor />
+    <View style={[styles.container, {}]}>
       <View style={styles.buttonCover}>
         <View style={[styles.button1, styles.button]}>
           <TouchableOpacity
@@ -37,6 +39,7 @@ const ProductDesigner = () => {
         </View>
       </View>
     </View>
+    </>
   );
 };
 export default ProductDesigner;

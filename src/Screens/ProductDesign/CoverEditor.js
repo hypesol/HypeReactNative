@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View,Dimensions, Text, 
         StyleSheet, Image,  Alert, 
         TouchableOpacity, CameraRoll } from 'react-native';
@@ -20,8 +20,9 @@ const options = {
 };
 
 const { width, height } = Dimensions.get('window');
-export default class CoverEditor extends Component {
-    static navigationOptions = ({navigation}) => {
+// export default class CoverEditor extends Component {
+  const CoverEditor = (props) => {
+    const navigationOptions = ({navigation}) => {
       const { params = {}} = navigation.state;
         let title = 'Cover Editor';
         let headerStyle = {
@@ -94,27 +95,26 @@ export default class CoverEditor extends Component {
         renderIcon={this.renderIcon(tab.icon)}
     />
     )
-    constructor(props){
-        super(props);
-        this.state = {
-          avatarSource: [],
-          activeTab: 'image',
-          bgColor: 'white',
-          addedText: [],
-          addedColor: [],
-          addedFont:[],
-          isText: false,
-          temp_text: '',
-          temp_sticker: '',
-          stickers: [],
-          phoneModel: '',
-          test_image:'',
-          phone_width: 0,
-          phone_height: 0,
-        }
 
-        this.props.navigation.setParams({onPublish: this._onPublish.bind(this)});
-    }
+    
+    const [avatarSource, setAvatarSource] = useState([]);
+    const [activeTab, setActiveTab]= useState('image');
+    const [bgColor, setBgColor ]= useState('white');
+    const [addedText, setSddedText ]= useState([]);
+    const [addedColor, setAddedColor]= useState([]);
+    const [addedFont, setAddedFont]=useState([]);
+    const [isText, setIsText]= useState(false);
+    const [temp_text, setTemp_text]= useState();
+    const [temp_sticker, setTemp_sticker]= useState();
+    const [stickers, setStickers]= useState([]);
+    const [phoneModel, setPhoneModel]= useState();
+    const [test_image, setTest_image ]= useState();
+    const [phone_width, setPhone_width]= useState(0);
+    const [phone_height, setPhone_height ]= useState(0);
+        
+
+        // this.props.navigation.setParams({onPublish: this._onPublish.bind(this)});
+    
 
 
     handleTabPress = (newTab) => {
@@ -132,7 +132,7 @@ export default class CoverEditor extends Component {
       }
     }
 
-    async saveImagetoServer() {
+   const saveImagetoServer =( async) => {
       
       fetch(url, {
         headers: {
@@ -146,7 +146,7 @@ export default class CoverEditor extends Component {
       .then(res=>{console.log(res.message)})
     }
 
-    async saveImage() {
+    const saveImage = (async) => {
       // let url = "http://165.22.179.40:81/api/v1/files/";
       // let data = new FormData();
       // this.refs.viewShot.capture().then(uri => {
@@ -172,8 +172,8 @@ export default class CoverEditor extends Component {
       //   })
       // });
     }
-    _onPublish(){
-      this.saveImage();
+    function _onPublish(){
+      saveImage();
     }
 
     onSelectAddImage=() => {
@@ -201,7 +201,7 @@ export default class CoverEditor extends Component {
       this.props.navigation.navigate("AddBGImage");
     }
 
-    deleteItem(ele) {
+    const deleteItem = (ele) => {
       let index = ele.index;
       if(index > -1){
         this.state.avatarSource[index] = '';
@@ -209,7 +209,7 @@ export default class CoverEditor extends Component {
       this.forceUpdate();
     }
 
-    deleteSticker(ele) {
+    const deleteSticker = (ele) => {
       let index = ele.index;
       if(index > -1){
         this.state.stickers[index] = '';
@@ -217,7 +217,7 @@ export default class CoverEditor extends Component {
       this.forceUpdate();
     }
 
-    deleteText(ele) {
+    const deleteText = (ele) => {
       let index = ele.index;
       if(index > -1){
         this.state.addedText[index] = '';
@@ -225,7 +225,7 @@ export default class CoverEditor extends Component {
       this.forceUpdate();
     }
 
-    async getModel() {
+    const getModel = (async) => {
       let phoneModel = this.props.navigation.getParam("phoneModel").file_url;
       let url = "http://165.22.179.40:81/media/" + phoneModel;
       this.setState({
@@ -233,16 +233,16 @@ export default class CoverEditor extends Component {
       });
       Image.getSize(url, (width, height) => {this.setState({phone_width: width, phone_height: height})});
     }
-
-    componentDidMount(){
+    // useEffect(() => {
+    componentDidMount = () =>{
       this.getModel();
     }
 
-    componentWillReceiveProps(){
+    componentWillReceiveProps = () =>{
       this.setState({isText: false});
       
     }
-    componentDidUpdate(){
+    componentDidUpdate = ()=> {
       let textKey = this.props.navigation.getParam('addedtext');
       let fontColor = this.props.navigation.getParam('fontcolor');
       let fontfamily = this.props.navigation.getParam('textfont');
@@ -267,7 +267,7 @@ export default class CoverEditor extends Component {
       }
     }
 
-    render() {
+
       let categoriedImage = "http://165.22.179.40:81/media/" + this.props.navigation.getParam("category");
       console.log("bg image =>", categoriedImage);
       let bgWidth = this.props.navigation.getParam("bgWidth");
@@ -370,7 +370,7 @@ export default class CoverEditor extends Component {
                 />
             </View>
           );
-    }
+    
 }
 
 
