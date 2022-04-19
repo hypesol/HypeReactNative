@@ -9,6 +9,8 @@ import ImagePicker from 'react-native-image-picker';
 import Gestures from 'react-native-easy-gestures';
 import Mask from "react-native-mask";
 import ViewShot from "react-native-view-shot";
+import {media} from '../../consts/media'
+
 // import store from '../store/index';
 // import mergeImages from 'merge-image';
 
