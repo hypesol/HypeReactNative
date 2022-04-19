@@ -133,20 +133,19 @@ const CoverEditor = props => {
 
   handleTabPress = newTab => {
     // this.setState({activeTab: newTab.key});
-    setActiveTab(newTab.key)
+    setActiveTab(newTab.key);
     console.log(newTab.key);
     if (newTab.key == 'image') {
       onSelectAddImage();
+    } else if (newTab.key == 'bgcolor') {
+      this.props.navigation.navigate('BGColorPicker');
+    } else if (newTab.key == 'sticker') {
+      this.props.navigation.navigate('SelectSticker');
+    } else if (newTab.key == 'bgimage') {
+      this.onSelectBGImage();
+    } else if (newTab.key == 'text') {
+      this.props.navigation.navigate('AddText');
     }
-    // } else if (newTab.key == 'bgcolor') {
-    //   this.props.navigation.navigate('BGColorPicker');
-    // } else if (newTab.key == 'sticker') {
-    //   this.props.navigation.navigate('SelectSticker');
-    // } else if (newTab.key == 'bgimage') {
-    //   this.onSelectBGImage();
-    // } else if (newTab.key == 'text') {
-    //   this.props.navigation.navigate('AddText');
-    // }
   };
 
   //  const saveImagetoServer =( async) => {
@@ -193,8 +192,8 @@ const CoverEditor = props => {
   //   saveImage();
   // }
 
- const onSelectAddImage = () => {
-    ImagePicker.launchImageLibrary(options, (response) => {
+  const onSelectAddImage = () => {
+    ImagePicker.launchImageLibrary(options, response => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
@@ -202,21 +201,21 @@ const CoverEditor = props => {
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        let source = { uri: response.uri };
+        let source = {uri: response.uri};
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        setAvatarSource(avatarSource, source)
+        setAvatarSource(avatarSource, source);
         // this.setState({
         //   avatarSource: [...this.state.avatarSource, source],
         // });
       }
     });
-  }
+  };
 
-  // onSelectBGImage = () => {
-  //   this.props.navigation.navigate("AddBGImage");
-  // }
+  onSelectBGImage = () => {
+    this.props.navigation.navigate("AddBGImage");
+  }
 
   // const deleteItem = (ele) => {
   //   let index = ele.index;
@@ -333,61 +332,63 @@ const CoverEditor = props => {
                       {cancelable: false},
                     )
                   }>
-                  <Image
-                    source={ele.img}
-                    style={styles.indi_pic}
-                  />
+                  <Image source={ele.img} style={styles.indi_pic} />
                 </TouchableOpacity>
               </Gestures>
               <Tooltip></Tooltip>
             </View>
           ))}
 
-                   
+          {stickers.map((ele, index) => (
+            <View key={index} style={styles.generatedPic}>
+              <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete sticker?',
+                      'Do you want to delete this sticker?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => this.deleteSticker({index}),
+                        },
+                        {text: 'Cancel'},
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Image source={ele.img} style={styles.indi_pic} />
+                </TouchableOpacity>
+              </Gestures>
+            </View>
+          ))}
+          {addedText.map((ele, index) => (
+            <View key={index} style={styles.generatedPic}>
+              <Gestures>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete this text?',
+                      'Do you want to delete this item?',
+                      [
+                        {text: 'OK', onPress: () => this.deleteText({index})},
+                        {text: 'Cancel'},
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Text
+                    style={[
+                      {fontSize: 36},
+                      {color: addedColor[index], fontFamily: addedFont[index]},
+                    ]}>
+                    {addedText[index]}
+                  </Text>
+                </TouchableOpacity>
+              </Gestures>
+            </View>
+          ))}
 
-{
-                        stickers.map((ele, index)=> (
-                          <View key={index} style={styles.generatedPic}>
-                            <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
-                              <TouchableOpacity onLongPress={()=>
-                                Alert.alert('Delete sticker?',
-                                'Do you want to delete this sticker?',
-                                [
-                                  {text: 'OK', onPress:()=>this.deleteSticker({index})},
-                                  {text: 'Cancel'}
-                                ],
-                                {cancelable: false}
-                                )
-                              }>
-                                <Image source={ele.img} style={styles.indi_pic} />
-                              </TouchableOpacity>
-                            </Gestures>
-                          </View>
-                        ))
-                      }
-                      {
-                        addedText.map((ele, index) => (
-                          <View key={index} style={styles.generatedPic}>
-                            <Gestures>
-                              <TouchableOpacity onLongPress={()=>
-                                Alert.alert('Delete this text?',
-                                'Do you want to delete this item?',
-                                [
-                                  {text: 'OK', onPress: ()=> this.deleteText({index})},
-                                  {text: 'Cancel'}
-                                ],
-                                {cancelable: false}
-                                )
-                              }>
-                                <Text style={[{fontSize: 36}, {color: addedColor[index], fontFamily: addedFont[index]}]}>
-                                    {addedText[index]}
-                                </Text>
-                              </TouchableOpacity>
-                            </Gestures>
-                          </View>
-                        ))
-                      }
-                     
           <View pointerEvents="none">
             <View
               style={{
