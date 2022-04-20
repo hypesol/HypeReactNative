@@ -1,10 +1,3 @@
-
-/*
- * className: BGColorPicker
- * Author   : ChengXin
- * Created  : July 4th 2019
- * Updated  : July 7th 2019
-*/
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -14,8 +7,8 @@ import {
   Alert
 } from 'react-native';
 import { ColorPicker, toHsv } from 'react-native-color-picker';
-import store from '../store/index';
-import { setBGColor } from '../actions/index';
+// import store from '../store/index';
+import { setBGColor } from './actions/index';
 export default class BGColorPicker extends Component {
     
     static navigationOptions = {

@@ -8,9 +8,9 @@ import CoverEditor from './CoverEditor';
 // import PhoneCover from './PhoneCover';
 // import SelectModel from './SelectModel';
 // import CustomedCategory from './CustomedCategory';
-// import BGColorPicker from './BGColorPicker';
+import BGColorPicker from './BGColorPicker';
 // import FontColorPicker from './FontColorPicker';
-// import AddText from './AddText';
+import AddText from './AddText';
 // import SelectSticker from './SelectSticker';
 // import StickerItems from './StickerItems';
 // import PhoneCase from './PhoneCase';
@@ -26,13 +26,9 @@ function ProductDesigner(){
         {/* <Stack.Navigator initialRouteName="Home" screenOptions={{header: () => null}}> */}
             <Stack.Navigator initialRouteName="CoverEditor" screenOptions={{headerShown: false }}>
                 <Stack.Screen name="CoverEditor" component={CoverEditor} />
-                {/* <Stack.Screen name="Profile" component={Profile} />
-                <Stack.Screen name="Splash1" component={Splash1} />
-                <Stack.Screen name="PlantShop" component={PlantShop} />
-                <Stack.Screen name="PlantDetail" component={PlantDetail} />
-                <Stack.Screen name="FoodHome" component={FoodHome} />
-                <Stack.Screen name="Restaurant" component={Restaurant} />
-                <Stack.Screen name="OrderDelivery" component={OrderDelivery} /> */}
+                <Stack.Screen name="BGColorPicker" component={BGColorPicker} />
+                <Stack.Screen name="AddText" component={AddText} />
+                
             </Stack.Navigator>
         </NavigationContainer>
     )

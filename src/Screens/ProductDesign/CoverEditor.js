@@ -7,7 +7,6 @@ import {
   Image,
   Alert,
   TouchableOpacity,
-  CameraRoll,
 } from 'react-native';
 
 import {Icon, Tooltip} from 'react-native-elements';
@@ -37,7 +36,7 @@ const options = {
 
 const {width, height} = Dimensions.get('window');
 
-const CoverEditor = props => {
+const CoverEditor = ({navigation}) => {
   const viewShotRef = useRef();
 
   // const navigationOptions = ({navigation}) => {
@@ -138,13 +137,13 @@ const CoverEditor = props => {
     if (newTab.key == 'image') {
       onSelectAddImage();
     } else if (newTab.key == 'bgcolor') {
-      this.props.navigation.navigate('BGColorPicker');
+      navigation.navigate('BGColorPicker');
     } else if (newTab.key == 'sticker') {
-      this.props.navigation.navigate('SelectSticker');
+      navigation.navigate('SelectSticker');
     } else if (newTab.key == 'bgimage') {
-      this.onSelectBGImage();
+      onSelectBGImage();
     } else if (newTab.key == 'text') {
-      this.props.navigation.navigate('AddText');
+      navigation.navigate('AddText');
     }
   };
 
@@ -194,18 +193,19 @@ const CoverEditor = props => {
 
   const onSelectAddImage = () => {
     ImagePicker.launchImageLibrary(options, response => {
-      console.log('Response = ', response);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        let source = {uri: response.uri};
+        let source = response.assets[0].uri;
+        
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        setAvatarSource(avatarSource, source);
+        setAvatarSource(item => [...item, source]);
+        // console.log('Response = ', avatarSource);
         // this.setState({
         //   avatarSource: [...this.state.avatarSource, source],
         // });
@@ -312,13 +312,14 @@ const CoverEditor = props => {
           <View style={[styles.bgImageWrapper, {backgroundColor: 'white'}]}>
             <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
               <Image
-                source={{categoriedImage}}
+                source={categoriedImage}
                 style={{width: bgWidth, height: bgHeight}}
               />
             </Gestures>
           </View>
-          {avatar.map((ele, index) => (
-            <View key={index} style={styles.generatedPic}>
+          {avatarSource.map((ele, index) => (
+            <View key={index} style={[styles.generatedPic, {backgroundColor:'gray'}]}>
+              {console.log(ele)}
               <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
                 <TouchableOpacity
                   onLongPress={() =>
@@ -332,7 +333,7 @@ const CoverEditor = props => {
                       {cancelable: false},
                     )
                   }>
-                  <Image source={ele.img} style={styles.indi_pic} />
+                  <Image source={{uri: ele}} style={styles.indi_pic} />
                 </TouchableOpacity>
               </Gestures>
               <Tooltip></Tooltip>
@@ -451,5 +452,7 @@ const styles = StyleSheet.create({
   indi_pic: {
     width: 60,
     height: 60,
+    borderColor:'black',
+    borderWidth:1
   },
 });
