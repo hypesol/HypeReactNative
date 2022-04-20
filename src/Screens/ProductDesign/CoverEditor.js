@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   Dimensions,
@@ -7,18 +7,22 @@ import {
   Image,
   Alert,
   TouchableOpacity,
-  CameraRoll,
 } from 'react-native';
 
 import {Icon, Tooltip} from 'react-native-elements';
 import BottomNavigation, {
   FullTab,
 } from 'react-native-material-bottom-navigation';
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'react-native-image-picker';
 import Gestures from 'react-native-easy-gestures';
 import Mask from 'react-native-mask';
 import ViewShot from 'react-native-view-shot';
 import {media} from '../../consts/media';
+
+import {IMAGES} from '../FoodApp/consts/images';
+import avatar from '../../consts/avatar';
+import stickers from '../../consts/stickers';
+import addedText from '../../consts/addedText';
 
 // import store from '../store/index';
 // import mergeImages from 'merge-image';
@@ -31,30 +35,27 @@ const options = {
 };
 
 const {width, height} = Dimensions.get('window');
-// export default class CoverEditor extends Component {
-const CoverEditor = props => {
-  const navigationOptions = ({navigation}) => {
-    const {params = {}} = navigation.state;
-    let title = 'Cover Editor';
-    let headerStyle = {
-      backgroundColor: '#0366d6',
-    };
-    let headerTintColor = '#fff';
-    let headerTitleStyle = {
-      fontWeight: 'bold',
-    };
-    let headerRight = (
-      <TouchableOpacity
-        onPress={() => {
-          params.onPublish();
-        }}
-        style={{paddingRight: 15}}>
-        <Icon name="eye" type="font-awesome" color="white" size={24} />
-      </TouchableOpacity>
-    );
 
-    return {title, headerStyle, headerTintColor, headerTitleStyle, headerRight};
-  };
+const CoverEditor = ({navigation}) => {
+  const viewShotRef = useRef();
+
+  // const navigationOptions = ({navigation}) => {
+  //   const { params = {}} = navigation.state;
+  //     let title = 'Cover Editor';
+  //     let headerStyle = {
+  //         backgroundColor: '#0366d6',
+  //     };
+  //     let headerTintColor = '#fff';
+  //     let headerTitleStyle = {
+  //         fontWeight: 'bold',
+  //     };
+  //     let headerRight = (
+  //       <TouchableOpacity onPress={()=>{params.onPublish();}} style={{paddingRight: 15}}>
+  //         <Icon name="eye" type="font-awesome" color="white" size={24} />
+  //       </TouchableOpacity>
+  //     );
+  //     return {title, headerStyle, headerTintColor, headerTitleStyle, headerRight}
+  // }
 
   tabs = [
     {
@@ -108,7 +109,7 @@ const CoverEditor = props => {
       isActive={isActive}
       key={tab.key}
       label={tab.label}
-      renderIcon={this.renderIcon(tab.icon)}
+      renderIcon={renderIcon(tab.icon)}
     />
   );
 
@@ -130,34 +131,35 @@ const CoverEditor = props => {
   // this.props.navigation.setParams({onPublish: this._onPublish.bind(this)});
 
   handleTabPress = newTab => {
-    this.setState({activeTab: newTab.key});
+    // this.setState({activeTab: newTab.key});
+    setActiveTab(newTab.key);
+    console.log(newTab.key);
     if (newTab.key == 'image') {
-      this.onSelectAddImage();
+      onSelectAddImage();
     } else if (newTab.key == 'bgcolor') {
-      this.props.navigation.navigate('BGColorPicker');
+      navigation.navigate('BGColorPicker');
     } else if (newTab.key == 'sticker') {
-      this.props.navigation.navigate('SelectSticker');
+      navigation.navigate('SelectSticker');
     } else if (newTab.key == 'bgimage') {
-      this.onSelectBGImage();
+      onSelectBGImage();
     } else if (newTab.key == 'text') {
-      this.props.navigation.navigate('AddText');
+      navigation.navigate('AddText');
     }
   };
 
-  const saveImagetoServer = async => {
-    fetch(url, {
-      headers: {
-        'Access-Key': 'mlkjhgfdsazxcvbnmlkjhgffdsaqwrio',
-        Authorization: 'Bearer M5CxAtOMAJ3hXLLKVzIybTLpcceMvo',
-        'Content-Type': 'application/json',
-      },
-      body: data,
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res.message);
-      });
-  };
+  //  const saveImagetoServer =( async) => {
+
+  //     fetch(url, {
+  //       headers: {
+  //           "Access-Key": "mlkjhgfdsazxcvbnmlkjhgffdsaqwrio",
+  //           "Authorization": "Bearer M5CxAtOMAJ3hXLLKVzIybTLpcceMvo",
+  //           "Content-Type": "application/json"
+  //       },
+  //       body: data
+  //     })
+  //     .then(res => res.json())
+  //     .then(res=>{console.log(res.message)})
+  //   }
 
   const saveImage = async => {
     // let url = "http://165.22.179.40:81/api/v1/files/";
@@ -185,235 +187,109 @@ const CoverEditor = props => {
     //   })
     // });
   };
-  function _onPublish() {
-    saveImage();
-  }
+  // function _onPublish(){
+  //   saveImage();
+  // }
 
-  onSelectAddImage = () => {
-    ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
+  const onSelectAddImage = () => {
+    ImagePicker.launchImageLibrary(options, response => {
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        let source = {uri: response.uri};
+        let source = response.assets[0].uri;
+        
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: [...this.state.avatarSource, source],
-        });
+        setAvatarSource(item => [...item, source]);
+        // console.log('Response = ', avatarSource);
+        // this.setState({
+        //   avatarSource: [...this.state.avatarSource, source],
+        // });
       }
     });
   };
 
   onSelectBGImage = () => {
-    this.props.navigation.navigate('AddBGImage');
-  };
+    this.props.navigation.navigate("AddBGImage");
+  }
 
-  const deleteItem = ele => {
-    let index = ele.index;
-    if (index > -1) {
-      this.state.avatarSource[index] = '';
-    }
-    this.forceUpdate();
-  };
+  // const deleteItem = (ele) => {
+  //   let index = ele.index;
+  //   if(index > -1){
+  //     this.state.avatarSource[index] = '';
+  //   }
+  //   this.forceUpdate();
+  // }
 
-  const deleteSticker = ele => {
-    let index = ele.index;
-    if (index > -1) {
-      this.state.stickers[index] = '';
-    }
-    this.forceUpdate();
-  };
+  // const deleteSticker = (ele) => {
+  //   let index = ele.index;
+  //   if(index > -1){
+  //     this.state.stickers[index] = '';
+  //   }
+  //   this.forceUpdate();
+  // }
 
-  const deleteText = ele => {
-    let index = ele.index;
-    if (index > -1) {
-      this.state.addedText[index] = '';
-    }
-    this.forceUpdate();
-  };
+  // const deleteText = (ele) => {
+  //   let index = ele.index;
+  //   if(index > -1){
+  //     this.state.addedText[index] = '';
+  //   }
+  //   this.forceUpdate();
+  // }
 
-  const getModel = async => {
-    let phoneModel = this.props.navigation.getParam('phoneModel').file_url;
-    let url = 'http://165.22.179.40:81/media/' + phoneModel;
-    this.setState({
-      phoneModel: url,
-    });
-    Image.getSize(url, (width, height) => {
-      this.setState({phone_width: width, phone_height: height});
-    });
-  };
+  // const getModel = (async) => {
+  //   let phoneModel = this.props.navigation.getParam("phoneModel").file_url;
+  //   let url = "http://165.22.179.40:81/media/" + phoneModel;
+  //   this.setState({
+  //     phoneModel: url
+  //   });
+  //   Image.getSize(url, (width, height) => {this.setState({phone_width: width, phone_height: height})});
+  // }
   // useEffect(() => {
-  componentDidMount = () => {
-    this.getModel();
-  };
+  // componentDidMount = () =>{
+  //   this.getModel();
+  // }
 
-  componentWillReceiveProps = () => {
-    this.setState({isText: false});
-  };
-  componentDidUpdate = () => {
-    let textKey = this.props.navigation.getParam('addedtext');
-    let fontColor = this.props.navigation.getParam('fontcolor');
-    let fontfamily = this.props.navigation.getParam('textfont');
-    let sticker = this.props.navigation.getParam('sticker');
+  // componentWillReceiveProps = () =>{
+  //   this.setState({isText: false});
+  // }
+  // componentDidUpdate = ()=> {
+  //   let textKey = this.props.navigation.getParam('addedtext');
+  //   let fontColor = this.props.navigation.getParam('fontcolor');
+  //   let fontfamily = this.props.navigation.getParam('textfont');
+  //   let sticker = this.props.navigation.getParam('sticker');
 
-    if (
-      sticker &&
-      this.state.isText == false &&
-      this.state.temp_sticker != sticker
-    ) {
-      this.setState({isText: true});
-      this.setState({
-        stickers: [...this.state.stickers, sticker],
-      });
-      this.setState({temp_sticker: sticker});
-    }
+  //   if(sticker && this.state.isText == false && this.state.temp_sticker != sticker){
+  //     this.setState({isText: true});
+  //     this.setState({
+  //       stickers: [...this.state.stickers, sticker]
+  //     });
+  //     this.setState({temp_sticker: sticker});
+  //   }
 
-    if (
-      textKey &&
-      this.state.isText == false &&
-      this.state.temp_text != textKey
-    ) {
-      this.setState({isText: true});
-      this.setState({
-        addedText: [...this.state.addedText, textKey],
-        addedColor: [...this.state.addedColor, fontColor],
-        addedFont: [...this.state.addedFont, fontfamily],
-      });
-      this.setState({temp_text: textKey});
-    }
-  };
+  //   if(textKey && this.state.isText == false && this.state.temp_text != textKey){
+  //     this.setState({isText: true});
+  //     this.setState({
+  //       addedText: [...this.state.addedText, textKey],
+  //       addedColor: [...this.state.addedColor, fontColor],
+  //       addedFont: [...this.state.addedFont, fontfamily]
+  //     });
+  //     this.setState({temp_text: textKey});
+  //   }
+  // }
 
-  let categoriedImage =
-    'http://165.22.179.40:81/media/' +
-    this.props.navigation.getParam('category');
+  // let categoriedImage = "http://165.22.179.40:81/media/" + this.props.navigation.getParam("category");
+  let categoriedImage = require('../../assets/images/avatar-1.jpg');
   console.log('bg image =>', categoriedImage);
-  let bgWidth = this.props.navigation.getParam('bgWidth');
-  let bgHeight = this.props.navigation.getParam('bgHeight');
+  let bgWidth = 500;
+  let bgHeight = 700;
   return (
     <View style={styles.container}>
       <View style={styles.editor}>
-        <Mask shape={'rounded'}>
-          <ViewShot ref="viewShot" options={{format: 'jpg', quality: 0.9}}>
-            <View
-              style={[
-                styles.bgImageWrapper,
-                {backgroundColor: this.props.navigation.getParam('bgColor')},
-              ]}>
-              <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
-                <Image
-                  source={{uri: categoriedImage}}
-                  style={{width: bgWidth, height: bgHeight}}
-                />
-              </Gestures>
-            </View>
-            {this.state.avatarSource.map((ele, index) => (
-              <View key={index} style={styles.generatedPic}>
-                <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
-                  <TouchableOpacity
-                    onLongPress={() =>
-                      Alert.alert(
-                        'Delete item?',
-                        'Do you want to delete this item?',
-                        [
-                          {text: 'OK', onPress: () => this.deleteItem({index})},
-                          {text: 'Cancel'},
-                        ],
-                        {cancelable: false},
-                      )
-                    }>
-                    <Image
-                      source={this.state.avatarSource[index]}
-                      style={styles.indi_pic}
-                    />
-                  </TouchableOpacity>
-                </Gestures>
-                <Tooltip></Tooltip>
-              </View>
-            ))}
-            {this.state.stickers.map((ele, index) => (
-              <View key={index} style={styles.generatedPic}>
-                <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
-                  <TouchableOpacity
-                    onLongPress={() =>
-                      Alert.alert(
-                        'Delete sticker?',
-                        'Do you want to delete this sticker?',
-                        [
-                          {
-                            text: 'OK',
-                            onPress: () => this.deleteSticker({index}),
-                          },
-                          {text: 'Cancel'},
-                        ],
-                        {cancelable: false},
-                      )
-                    }>
-                    <Image
-                      source={{
-                        uri:
-                          'http://165.22.179.40:81/media/' +
-                          this.state.stickers[index],
-                      }}
-                      style={styles.indi_pic}
-                    />
-                  </TouchableOpacity>
-                </Gestures>
-              </View>
-            ))}
-            {this.state.addedText.map((ele, index) => (
-              <View key={index} style={styles.generatedPic}>
-                <Gestures>
-                  <TouchableOpacity
-                    onLongPress={() =>
-                      Alert.alert(
-                        'Delete this text?',
-                        'Do you want to delete this item?',
-                        [
-                          {text: 'OK', onPress: () => this.deleteText({index})},
-                          {text: 'Cancel'},
-                        ],
-                        {cancelable: false},
-                      )
-                    }>
-                    <Text
-                      style={[
-                        {fontSize: 36},
-                        {
-                          color: this.state.addedColor[index],
-                          fontFamily: this.state.addedFont[index],
-                        },
-                      ]}>
-                      {this.state.addedText[index]}
-                    </Text>
-                  </TouchableOpacity>
-                </Gestures>
-              </View>
-            ))}
-            <View pointerEvents="none">
-              <View
-                style={{
-                  width: this.state.phone_width / 4.5,
-                  height: this.state.phone_height / 4.5,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Image
-                  style={{
-                    width: this.state.phone_width / 4.5,
-                    height: this.state.phone_height / 4.5,
-                  }}
-                  source={{uri: this.state.phoneModel}}
-                />
-              </View>
-            </View>
-          </ViewShot>
-        </Mask>
         <View
           style={{
             paddingTop: 30,
@@ -429,16 +305,118 @@ const CoverEditor = props => {
           </Text>
         </View>
       </View>
+      <Mask shape={'rounded'}>
+        <ViewShot
+          viewShotRef="viewShot"
+          options={{format: 'jpg', quality: 0.9}}>
+          <View style={[styles.bgImageWrapper, {backgroundColor: 'white'}]}>
+            <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
+              <Image
+                source={categoriedImage}
+                style={{width: bgWidth, height: bgHeight}}
+              />
+            </Gestures>
+          </View>
+          {avatarSource.map((ele, index) => (
+            <View key={index} style={[styles.generatedPic, {backgroundColor:'gray'}]}>
+              {console.log(ele)}
+              <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete item?',
+                      'Do you want to delete this item?',
+                      [
+                        {text: 'OK', onPress: () => this.deleteItem({index})},
+                        {text: 'Cancel'},
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Image source={{uri: ele}} style={styles.indi_pic} />
+                </TouchableOpacity>
+              </Gestures>
+              <Tooltip></Tooltip>
+            </View>
+          ))}
 
+          {stickers.map((ele, index) => (
+            <View key={index} style={styles.generatedPic}>
+              <Gestures rotatable={true} scalable={{min: 0.1, max: 10}}>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete sticker?',
+                      'Do you want to delete this sticker?',
+                      [
+                        {
+                          text: 'OK',
+                          onPress: () => this.deleteSticker({index}),
+                        },
+                        {text: 'Cancel'},
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Image source={ele.img} style={styles.indi_pic} />
+                </TouchableOpacity>
+              </Gestures>
+            </View>
+          ))}
+          {addedText.map((ele, index) => (
+            <View key={index} style={styles.generatedPic}>
+              <Gestures>
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete this text?',
+                      'Do you want to delete this item?',
+                      [
+                        {text: 'OK', onPress: () => this.deleteText({index})},
+                        {text: 'Cancel'},
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Text
+                    style={[
+                      {fontSize: 36},
+                      {color: addedColor[index], fontFamily: addedFont[index]},
+                    ]}>
+                    {addedText[index]}
+                  </Text>
+                </TouchableOpacity>
+              </Gestures>
+            </View>
+          ))}
+
+          <View pointerEvents="none">
+            <View
+              style={{
+                width: phone_width / 4.5,
+                height: phone_height / 4.5,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Image
+                style={{width: phone_width / 4.5, height: phone_height / 4.5}}
+                source={{uri: phoneModel}}
+              />
+            </View>
+          </View>
+        </ViewShot>
+      </Mask>
       <BottomNavigation
-        activeTab={this.state.activeTab}
-        onTabPress={this.handleTabPress}
-        renderTab={this.renderTab}
-        tabs={this.tabs}
+        activeTab={activeTab}
+        onTabPress={handleTabPress}
+        renderTab={renderTab}
+        tabs={tabs}
       />
     </View>
   );
 };
+
+export default CoverEditor;
 
 const styles = StyleSheet.create({
   container: {
@@ -474,5 +452,7 @@ const styles = StyleSheet.create({
   indi_pic: {
     width: 60,
     height: 60,
+    borderColor:'black',
+    borderWidth:1
   },
 });
