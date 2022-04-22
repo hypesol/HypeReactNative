@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ProductDesigner from './src/Screens/ProductDesign';
 import JSON from './src/Screens/WP/JSON';
 import AnimatedSplash from "react-native-animated-splash-screen";
-
+import TextEditor from './src/Screens/TextEditor'
 import RoutesLogin from './src/Navigations/Routes';
 import { store, persistor } from './src/redux/store/store';
 
@@ -43,7 +43,8 @@ const App = () => {
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
             {/* <Counter /> */}
-            <ProductDesigner />
+            {/* <ProductDesigner /> */}
+            <TextEditor/>
               {/* <Routes /> */}
               {/* <JSON /> */}
               {/* <Text>HOME SCREEN</Text> */}
