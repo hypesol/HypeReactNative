@@ -43,10 +43,10 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
-            <DragDrop />
+            {/* <DragDrop /> */}
             {/* <Counter /> */}
             {/* <ProductDesigner /> */}
-            {/* <TextEditor/> */}
+            <TextEditor/>
               {/* <Routes /> */}
               {/* <JSON /> */}
               {/* <Text>HOME SCREEN</Text> */}

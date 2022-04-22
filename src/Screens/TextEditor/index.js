@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './home';
 import DragTextEditor from './DragTextEditor';
 import DragTextEditorFull from './DragTextEditorFull';
+import TextEditor from './TextEditor';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,10 +15,11 @@ function TextEditorMain(){
     return (
         <NavigationContainer>
         {/* <Stack.Navigator initialRouteName="Home" screenOptions={{header: () => null}}> */}
-            <Stack.Navigator initialRouteName="DragTextEditorFull" screenOptions={{headerShown: false }}>
+            <Stack.Navigator initialRouteName="TextEditor" screenOptions={{headerShown: false }}>
                 <Stack.Screen name="Home" component={Home} /> 
                 <Stack.Screen name="DragTextEditor" component={DragTextEditor} /> 
                 <Stack.Screen name="DragTextEditorFull" component={DragTextEditorFull} /> 
+                <Stack.Screen name="TextEditor" component={TextEditor} /> 
             </Stack.Navigator>
         </NavigationContainer>
     )
