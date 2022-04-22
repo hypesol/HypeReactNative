@@ -13,6 +13,7 @@ import ProductDesigner from './src/Screens/ProductDesign';
 import JSON from './src/Screens/WP/JSON';
 import AnimatedSplash from "react-native-animated-splash-screen";
 import TextEditor from './src/Screens/TextEditor'
+import DragDrop from './src/Screens/DragDrop'
 import RoutesLogin from './src/Navigations/Routes';
 import { store, persistor } from './src/redux/store/store';
 
@@ -42,9 +43,10 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
+            <DragDrop />
             {/* <Counter /> */}
             {/* <ProductDesigner /> */}
-            <TextEditor/>
+            {/* <TextEditor/> */}
               {/* <Routes /> */}
               {/* <JSON /> */}
               {/* <Text>HOME SCREEN</Text> */}
