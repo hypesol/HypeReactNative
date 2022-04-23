@@ -146,6 +146,8 @@ componentDidMount(){
         fontSizing(sizeValue){ //fontsave
           const index=this.state.textInAction;
           const markers = [...this.state.arrayTextData];
+          console.log("Markers", markers)
+
           markers[index].defFontSize = sizeValue;
           markers[index].defLineHeight = sizeValue;
           this.setState({
