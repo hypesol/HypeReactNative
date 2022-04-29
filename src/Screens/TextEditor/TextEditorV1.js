@@ -22,17 +22,28 @@ import {stickersData} from '../../consts/stickers'
 let input = 0;
 
 const TextEditor = () => {
-  console.log("STR",stickersData[0].id);
-
-  const initialText = [{
-    text:"Hi",
-    size:32,
-    color:'red'
-  }]
-
-  const [addedText, setAddedText] = useState(initialText);
-    const isFocused = useIsFocused();
+  // console.log("STR",stickersData[0].id);
+  const [addedText, setAddedText] = useState([]);
+  const isFocused = useIsFocused();
   const viewShotRef = useRef();
+
+
+  const [sizeOfText, setSizeOfText] = useState(32);
+  const [textInAction, setTextInAction] = useState(0);
+  const [arrayTextData, setArrayTextData] = useState([]);
+  const [textID, setTextID] = useState(0);
+  const [lorem, setLorem] = useState('sample text');
+  const FONTDEF = 'Montserrat-Medium';
+  const [newFontSize, setNewFontSize] = useState(32);
+  const [xPos, setxPos] = useState(0);
+  const [yPos, setyPos] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [addNewTextString, setAddNewTextString] = React.useState();
+
+
+  let textArray = [];
+
+
   const setTopCategories = data => {
     //console.log(item.split('>') ,item.split('>').length, item.split('>')[item.split('>').length-1])}
     let splitData = data.split('>')[data.split('>').length - 1].trim();
@@ -61,18 +72,29 @@ const TextEditor = () => {
     //    setGetCategories(removeCategs);
   };
 
-  const addNewTextFunction = () => {
+  const addNewTextFunctionXXXX = () => {
     input = input + 1;
     // setAddedText(prv => prv.concat(`Text${input}`));
-    setAddedText(prv => prv.concat(initialText));
-    
-    // setAddedText(prv => prv.concat(addNewTextString));
+    setAddedText(prv => prv.concat(addNewTextString));
     console.log('Added', addedText, input);
-    // setModalVisible(!modalVisible);
+    setModalVisible(!modalVisible);
   };
 
-  let textArray = [];
-
+  const addNewTextFunction = () => {
+    setTextID(textID+1);    
+    let DEFS ={ 
+      defTextID:textID,
+      defTextValue:lorem, 
+      defFontFamily:FONTDEF,
+      defAlign:'center',
+      defLetterSpacing:0,
+      defColor:'#000000',
+      defLineHeight:sizeOfText,
+      defFontSize:15
+     }
+     setArrayTextData(prevState => [...prevState, DEFS])
+  };
+ 
   const deleteText = async ele => {
     let newTextArray = addedText;
     let content = ele;
@@ -92,6 +114,7 @@ const TextEditor = () => {
     // }
   };
   const saveViewShot = () => {
+    // console.log(arrayTextData);
     viewShotRef.current.capture().then(uri => {
       CameraRoll.saveToCameraRoll(uri)
         .then(alert('Done', 'Photo added to camera roll!'))
@@ -99,59 +122,23 @@ const TextEditor = () => {
     });
   };
 
-  const [sizeOfText, setSizeOfText] = useState(32);
-  const [textInAction, setTextInAction] = useState(0);
-  const [arrayTextData, setArrayTextData] = useState([]);
-  const [textID, setTextID] = useState(0);
-  const [lorem, setLorem] = useState('sample text');
-  const FONTDEF = 'Montserrat-Medium';
-  const [newFontSize, setNewFontSize] = useState(32);
-  const [xPos, setxPos] = useState(0);
-  const [yPos, setyPos] = useState(0);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [addNewTextString, setAddNewTextString] = React.useState();
 
-  const myTextRefs= useRef([]);
-
-
-  updatedText =[{
-    text:addedText.text,
-    color:addedText.color,
-    size:addedText.size
-  }]
 
   const fontSizing = sizeValue => {
     //fontsave
     const index = textInAction;
-    console.log("SELTEXT", index);
-    // setAddedText(...addedText, )
     setNewFontSize(sizeValue);
-    // const markers = [...addedText];
-    // console.log("Markers", markers)
+    const markers = [...arrayTextData];
+    console.log("Markers", markers[index])
     // markers[index].defFontSize = sizeValue;
     // markers[index].defLineHeight = sizeValue;
     // setArrayTextData({
     //    arrayTextData: markers,
     //     lineHegOfText:sizeValue/2
     //   });
-    console.log('arrayTextData', arrayTextData);
+    // console.log('arrayTextData', arrayTextData);
   };
-  useEffect(() => {
-    if (isFocused) {
-      let DEFS = {
-        defTextID: textID,
-        defTextValue: lorem,
-        defFontFamily: FONTDEF,
-        defAlign: 'center',
-        defLetterSpacing: 0,
-        defColor: '#000000',
-        defLineHeight: sizeOfText,
-        defFontSize: 15,
-      };
 
-      setArrayTextData(...addedText, DEFS);
-    }
-  }, [isFocused]);
   return (
     <SafeAreaView style={{flex: 1, paddingTop: 30}}>
       <View style={{flexDirection: 'row'}}>
@@ -164,7 +151,6 @@ const TextEditor = () => {
         <TouchableOpacity onPress={saveViewShot}>
           <Text style={{fontSize: 32}}>Save</Text>
         </TouchableOpacity>
-        <Text>text color</Text>
       </View>
       {
         // console.log(Stickers)
@@ -200,37 +186,25 @@ const TextEditor = () => {
           justifyContent: 'center',
           backgroundColor: '#ffffff',
         }}>
-          {console.log(addedText)}
-        {addedText &&
-          addedText.map((data, index) => (
+       
+
+        {arrayTextData &&
+          arrayTextData.map((data, index) => (
             <Gestures
-              style={{position: 'absolute', left: xPos, top: yPos}}
+              style={{position: 'absolute', left: 0, top: 0}}
               onEnd={(event, styles) => {
                 console.log(styles);
                 setxPos(styles.left);
                 setyPos(styles.top);
-                // console.log("LastX",xPos)
+                console.log("LastX",xPos)
               }}>
-              {/* <TouchableOpacity
-          key={index+1}
-            onPress={() =>
-              Alert.alert(
-                'Delete this text?',
-                'Do you want to delete this item?',
-                [
-                  {text: 'OK', onPress: () => deleteText(index)},
-                  {text: 'Cancel'},
-                ],
-                {cancelable: false},
-              )
-            }> */}
               <TouchableOpacity 
-                // onPress={() => deleteText(data)}
-                onPress={()=> setTextInAction(index)}
-                ref={(el) => (myTextRefs.current[index] = el)}
+                //onPress={() => deleteText(data)}
+                onPress={() => setTextInAction(index)}
               >
-                <Text style={[data.color, {fontSize: data.size, color: data.color}]}>
-                  {data.text}
+                <Text style={{fontSize: newFontSize, marginTop: 0}}>
+                  {/* {data} */}
+                  TEXT
                 </Text>
               </TouchableOpacity>
             </Gestures>

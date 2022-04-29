@@ -16,6 +16,7 @@ import TextEditor from './src/Screens/TextEditor'
 import DragDrop from './src/Screens/DragDrop'
 import RoutesLogin from './src/Navigations/Routes';
 import { store, persistor } from './src/redux/store/store';
+import CanvasApp from './src/Screens/Canvas'
 
 /// import { store, persistor } from './redux/store/store';
 
@@ -43,6 +44,7 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={<ActivityIndicator/>} persistor={persistor} >
           <View style={{flex: 1}}>
+            {/* <CanvasApp /> */}
             {/* <DragDrop /> */}
             {/* <Counter /> */}
             {/* <ProductDesigner /> */}

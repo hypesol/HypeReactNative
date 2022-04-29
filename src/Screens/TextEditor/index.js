@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './home';
 import DragTextEditor from './DragTextEditor';
 import DragTextEditorFull from './DragTextEditorFull';
-import TextEditor from './TextEditor';
+import TextEditor from './TextEditorV1';
 
 const Stack = createNativeStackNavigator();
 

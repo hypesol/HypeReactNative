@@ -20,6 +20,8 @@ target 'HypeReactNative' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'HypeReactNativeTests' do
     inherit! :complete
     # Pods for testing
